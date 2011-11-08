@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link rel="stylesheet" href="css/jquery.mobile-1.0rc2.css" charset="utf-8">
 		<script src="js/jquery-1.7.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/underscore-1.2.1.js" type="text/javascript" charset="utf-8"></script>
@@ -15,13 +15,21 @@
 	</head>
 	<body>
 		<div id="home" data-role="page">
+
 			<div data-role="header">
-				<h1>Local Notes</h1>
+				<h1>Geo Notes</h1>
+				<a href="#" data-role="button" data-icon="plus" class="ui-btn-right">New</a>
 			</div>
 
 			<div data-role="content">
-				Hello World!
+				<a href="#" data-role="button" data-icon="plus" data-theme="b">New Note</a>
+
+				<ul data-role="listview" data-inset="true">
+					<li><a href="#">All Notes</a></li>
+					<li><a href="#">Nearest Notes</a></li>
+				</ul>
 			</div>
+
 		</div>
 	</body>
 </html>
