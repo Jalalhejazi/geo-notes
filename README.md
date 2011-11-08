@@ -9,7 +9,7 @@ We build it in three parts (labs at Télécom Saint-Etienne) :
 + In the second part of the project, we continue to build our HTML5 mobile note taking application and learn how to use Backbone.js to manage the data in our application (the Model layer).
 + In the final part, we build the Geolocation feature for our note-taking application.
 
-## Installation ##
+## Requirements ##
 
 + Offline
 + Mobile
