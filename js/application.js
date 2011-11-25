@@ -1,7 +1,8 @@
 var NotesApp = (function(){
 
 	var App = {
-		stores: {}
+		stores: {},
+		views: {}
 	}
 
 	//Initialize localStorage Data Store
@@ -22,6 +23,55 @@ var NotesApp = (function(){
 			};
 		}
 
+	});
+
+	//Note new form View
+	var NewNoteForm = Backbone.View.extend({
+		events: {
+			"submit form" : "createNote"
+		},
+
+		createNote: function(event) {
+			var attrs = this.getAttributes();
+
+			var note = new Note();
+
+			note.set(attrs);
+			note.save();
+
+			//Stop the browser default behavior
+			event.preventDefault();
+
+			//Stop jQuery Mobile from doing it's magic
+			event.stopPropagation();
+
+			// Close the dialog box
+			$('.ui-dialog').dialog('close');
+
+			this.reset();
+
+
+
+		},
+
+		getAttributes: function(){
+			return {
+				title: this.$('form [name="title"]').val(),
+				body: this.$('form [name="body"]').val()
+			}
+		},
+
+		reset: function() {
+			this.$('input, textarea').val('');
+		}
+
+	});
+
+	$(document).ready(function(){
+		// Executed only when the DOM is ready, e.g. the html page is loaded
+		App.views.newForm = new NewNoteForm({
+			el: $('#new')
+		});
 	});
 
 	window.Note = Note;
