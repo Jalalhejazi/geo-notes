@@ -25,6 +25,26 @@ var NotesApp = (function(){
 
 	});
 
+
+	// Notes Collection
+	var NoteList = Backbone.Collection.extend({
+	// This collection is composed of Note objects
+	model: Note,
+
+	// Set the localStorage datastore
+	localStorage: App.stores.notes,
+
+	initialize: function(){
+		var collection = this;
+	
+		// When localStorage updates, fetch data from the store
+		this.localStorage.bind('update', function(){
+			collection.fetch();
+		})
+	}
+
+	});
+
 	//Note new form View
 	var NewNoteForm = Backbone.View.extend({
 		events: {
