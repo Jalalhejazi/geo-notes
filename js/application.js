@@ -2,7 +2,8 @@ var NotesApp = (function(){
 
 	var App = {
 		stores: {},
-		views: {}
+		views: {},
+		collections: {}
 	}
 
 	//Initialize localStorage Data Store
@@ -135,6 +136,13 @@ var NotesApp = (function(){
 
 	App.views.newForm = new NewNoteForm({
 		el: $('#new')
+	});
+
+	App.collections.all_notes = new NoteList();
+
+	App.views.list_alphabetical = new NoteListView({
+		el: $('#all_notes'),
+		collection: App.collections.all_notes
 	});
 
 	window.Note = Note;
