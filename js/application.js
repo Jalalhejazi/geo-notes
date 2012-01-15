@@ -36,7 +36,7 @@ var NotesApp = (function(){
 
 	initialize: function(){
 		var collection = this;
-	
+
 		// When localStorage updates, fetch data from the store
 		this.localStorage.bind('update', function(){
 			collection.fetch();
@@ -86,6 +86,34 @@ var NotesApp = (function(){
 		}
 
 	});
+
+
+	// Represents a listview page displaying a collection of Notes
+	// Each item is represented by a NoteListItemView
+	var NoteListView = Backbone.View.extend({
+
+		initialize: function(){
+			_.bindAll(this, 'addOne', 'addAll');
+
+			this.collection.bind('add', this.addOne);
+			this.collection.bind('refresh', this.addAll);
+
+			this.collection.fetch(); //make sure the collection is up to date
+		},
+
+		addOne: function(note){
+			var view = new NoteListItemView({model: note});
+			$(this.el).append(view.render().el);
+		},
+
+		addAll: function(){
+			$(this.el).empty();
+			this.collection.each(this.addOne);
+		}
+
+	});
+
+
 
 	$(document).ready(function(){
 		// Executed only when the DOM is ready, e.g. the html page is loaded
