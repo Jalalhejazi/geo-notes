@@ -57,6 +57,17 @@ var NotesApp = (function(){
 
 			var note = new Note();
 
+			if ('geolocation' in navigator) { //check if geocapable browser
+				//do geolocate
+				navigator.geolocation.getCurrentPosition(function(position){
+					//handle geolocation data
+					if (position && position.coords) {
+						attrs.latitude = position.coords.latitude;
+						attrs.longitude = position.coords.longitude;
+					}
+				});
+			}
+
 			note.set(attrs);
 			note.save();
 
