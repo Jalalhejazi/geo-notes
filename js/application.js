@@ -114,6 +114,24 @@ var NotesApp = (function(){
 	});
 
 
+	// Note item view
+	var NoteListItemView = Backbone.View.extend({
+
+		tagName: 'li',
+		template: _.template($('#note-list-item-template').html()),
+
+		initialize: function(){
+		_.bindAll(this, 'render')
+
+		this.model.bind('change', this.render)
+		},
+
+		render: function(){
+			$(this.el).html(this.template({ note: this.model }))
+			return this;
+		}
+
+	});
 
 	$(document).ready(function(){
 		// Executed only when the DOM is ready, e.g. the html page is loaded
