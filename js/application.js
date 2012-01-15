@@ -133,11 +133,8 @@ var NotesApp = (function(){
 
 	});
 
-	$(document).ready(function(){
-		// Executed only when the DOM is ready, e.g. the html page is loaded
-		App.views.newForm = new NewNoteForm({
-			el: $('#new')
-		});
+	App.views.newForm = new NewNoteForm({
+		el: $('#new')
 	});
 
 	window.Note = Note;
